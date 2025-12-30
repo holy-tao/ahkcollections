@@ -5,11 +5,13 @@
 #Include ./YUnit/JUnit.ahk
 #Include ./YUnit/Stdout.ahk
 
-#Include  ./ReadOnlyCollections.Test.Ahk
+#Include ./ReadOnlyCollections.Test.Ahk
+#Include ./Query.Test.Ahk
 
 YUnit.Use(YunitResultCounter, YUnitJUnit, YUnitStdOut).Test(
 	ReadOnlyArrayTests,
-	ReadOnlyMapTests
+	ReadOnlyMapTests,
+	QueryTests
 )
 
 Exit(-YunitResultCounter.failures)
