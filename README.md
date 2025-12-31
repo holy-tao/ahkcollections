@@ -1,9 +1,17 @@
-# ahk-template
+# Ahk Collections
 Miscellaneous collections and collection-related utilities for my personal AHK library. Clone into a library directory and see the scripts themselves for detailed documentation.
 
 ## Contents
 ### [Readonly/](./Readonly/)
 Various read-only collections. These are collections that cannot be modified after they are created; attempting to do so throws a [`ReadOnlyError`](./Readonly/ReadOnlyError.ahk).
+
+### [Typed/](./Typed/)
+Various typed collections. These extend the built-in Array and Map types with type restrictions. Keys, values, and entries must be instances of a particular Class:
+
+```autohotkey
+tArr := TypedArray(String)
+tArr.Push(1) ; TypeError
+```
 
 ### [Query.ahk](./Query.ahk)
 Provides [Linq](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)-like functionality for [enumerable](https://www.autohotkey.com/docs/v2/Objects.htm#__Enum) AHK objects, allowing you to chain operators together and defer actual enumeration until it's absolutely required.

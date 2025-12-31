@@ -6,11 +6,14 @@
 #Include ./YUnit/Stdout.ahk
 
 #Include ./ReadOnlyCollections.Test.Ahk
+#Include ./TypedCollections.Test.ahk
 #Include ./Query.Test.Ahk
 
 YUnit.Use(YunitResultCounter, YUnitJUnit, YUnitStdOut).Test(
 	ReadOnlyArrayTests,
 	ReadOnlyMapTests,
+	TypedArrayTests,
+	TypedMapTests,
 	QueryTests
 )
 
