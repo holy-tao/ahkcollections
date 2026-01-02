@@ -1,11 +1,17 @@
 # Ahk Collections
 Miscellaneous collections and collection-related utilities for my personal AHK library. Clone into a library directory and see the scripts themselves for detailed documentation.
 
-## Contents
-### [Readonly/](./Readonly/)
+# Contents
+- [Readonly/](#readonly)
+- [Typed/](#typed)
+- [Query.ahk](#queryahk)
+- [Text](#text)
+  - [PrefixTrie.ahk](#prefixtrieahk)
+
+## [Readonly/](./Readonly/)
 Various read-only collections. These are collections that cannot be modified after they are created; attempting to do so throws a [`ReadOnlyError`](./Readonly/ReadOnlyError.ahk).
 
-### [Typed/](./Typed/)
+## [Typed/](./Typed/)
 Various typed collections. These extend the built-in Array and Map types with type restrictions. Keys, values, and entries must be instances of a particular Class:
 
 ```autohotkey
@@ -13,7 +19,7 @@ tArr := TypedArray(String)
 tArr.Push(1) ; TypeError
 ```
 
-### [Query.ahk](./Query.ahk)
+## [Query.ahk](./Query.ahk)
 Provides [Linq](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)-like functionality for [enumerable](https://www.autohotkey.com/docs/v2/Objects.htm#__Enum) AHK objects, allowing you to chain operators together and defer actual enumeration until it's absolutely required.
 
 ```autohotkey
@@ -44,3 +50,28 @@ for(val in msgBoxQuery){
 ; MessageBoxes would also appear here
 items := msgBoxQuery.Count()
 ```
+
+## [Text](./Text/)
+Text-based collections, currently only contains the prefix trie.
+
+### [PrefixTrie.ahk](./Text/PrefixTrie.ahk)
+Implements a prefix [trie](https://en.wikipedia.org/wiki/Trie), an efficient data structore for storing and querying large numbers of arbitrary strings. `PrefixTrie` supports lookup by key and searching by prefix:
+
+```autohotkey
+#Include <Collections/Text/PrefixTrie>
+
+trie := PrefixTrie()
+for(str in ["Test", "Testing", "Tester", "Ten", "Tennis", "Tent"]){
+    trie.Insert(str)
+}
+
+; Check to see if the trie contains a key
+MsgBox(trie.Contains("Test")) ; 1 / true
+
+; Check to see if the trie contains a prefix
+MsgBox(trie.IsPrefix("Ten")) ; 1 / true
+
+; Search by prefix - __Item[] and Search() return all keys prefixed by some prefix
+for(str in trie["Tes"]) {
+    MsgBox(str)
+}

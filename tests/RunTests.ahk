@@ -8,12 +8,14 @@
 #Include ./ReadOnlyCollections.Test.Ahk
 #Include ./TypedCollections.Test.ahk
 #Include ./Query.Test.Ahk
+#Include ./PrefixTrie.test.ahk
 
 YUnit.Use(YunitResultCounter, YUnitJUnit, YUnitStdOut).Test(
 	ReadOnlyArrayTests,
 	ReadOnlyMapTests,
 	TypedArrayTests,
 	TypedMapTests,
+	PrefixTrieTests,
 	QueryTests
 )
 
