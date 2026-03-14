@@ -7,6 +7,7 @@ Miscellaneous collections and collection-related utilities for my personal AHK l
 - [Query.ahk](#queryahk)
 - [Text](#text)
   - [PrefixTrie.ahk](#prefixtrieahk)
+  - [PrefixTrieMap.ahk](#prefixtriemapahk)
 
 ## [Readonly/](./Readonly/)
 Various read-only collections. These are collections that cannot be modified after they are created; attempting to do so throws a [`ReadOnlyError`](./Readonly/ReadOnlyError.ahk).
@@ -75,3 +76,6 @@ MsgBox(trie.IsPrefix("Ten")) ; 1 / true
 for(str in trie["Tes"]) {
     MsgBox(str)
 }
+
+### [PrefixTrieMap.ahk](./Text/PrefixTrieMap.ahk)
+A map backed by a prefix trie. Identical to `PrefixTrie` except that leaf nodes have assosciated values
