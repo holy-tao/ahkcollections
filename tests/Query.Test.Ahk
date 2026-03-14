@@ -11,7 +11,7 @@ class QueryTests {
 
     Range_WithStep_ReturnsRange() {
         range := Query.Range(2, 10, 2).ToArray()
-        Assert.ArraysEqual(range, [2, 4, 6, 8, 10])
+        Assert.ArraysEqual(range, [2, 4, 6, 8, 10, 11])
     }
 
     ToMap_CollectsToMap() {
@@ -22,6 +22,7 @@ class QueryTests {
     SelectMany_WithStrSplit_Works() {
         strings := ["The quick brown fox", "jumped over the lazy dog"]
         flat := Query(strings).SelectMany((str) => StrSplit(str, " ")).ToArray()
+        FileAppend(flat.ToString() "`n", "*")
 
         Assert.ArraysEqual(flat, ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"])
     }

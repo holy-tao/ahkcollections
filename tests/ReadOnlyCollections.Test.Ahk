@@ -16,7 +16,7 @@ class ReadOnlyArrayTests {
 
     ItemSet_Always_ThrowsReadOnlyError() {
         arr := ReadOnlyArray(1, 2, 3, 4, 5)
-        Assert.Throws((*) => arr[2] := 3, ReadOnlyError)
+        err := Assert.Throws((*) => arr[2] := 3, ReadOnlyError)
     }
 
     Push_Always_ThrowsReadOnlyError() {

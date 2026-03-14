@@ -11,7 +11,7 @@ class TypedArrayTests {
         arr := TypedArray(Number, 1, 2, 3, 4, 5.0)
     }
 
-    Constructr_WithSingleTypeAndInvalidInput_ThrowsTypeError() {
+    Constructor_WithSingleTypeAndInvalidInput_ThrowsTypeError() {
         Assert.Throws(
             (*) => TypedArray(Integer, 1, 2, 3, 4.5, 6),
             TypeError
