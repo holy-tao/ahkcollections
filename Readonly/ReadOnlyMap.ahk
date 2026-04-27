@@ -14,4 +14,19 @@ class ReadOnlyMap extends Map {
     }
     
     Set(ValueN*) => ReadOnlyError.ThrowFor(this)
+
+    /**
+     * Create a read-only copy of `other`
+     * 
+     * @param {Map} other the map to copy
+     * @returns {ReadOnlyMap} 
+     */
+    static From(other) {
+        if !(other is Map)
+            throw TypeError("Expected a Map but got a(n) " Type(other), -1, other)
+
+        ; Can't expand a map into key, value pairs compatible with __New
+        ObjSetBase(readOnly := other.Clone(), ReadOnlyMap.Prototype)
+        return readOnly
+    }
 }

@@ -14,4 +14,16 @@ class ReadOnlyArray extends Array {
 
     Push(values*) => ReadOnlyError.ThrowFor(this)
     InsertAt(index, values*) => ReadOnlyError.ThrowFor(this)
+
+    /**
+     * Create a read-only clone of `arr`
+     * 
+     * @param {Array<Any>} arr array to copy 
+     * @returns {ReadOnlyArray}
+     */
+    static From(arr) {
+        if !(arr is Array)
+            throw TypeError("Expected an Array but got a(n) " Type(arr), -1, arr)
+        return ReadOnlyArray(arr*)
+    }
 }

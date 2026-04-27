@@ -1,6 +1,7 @@
 #Requires AutoHotkey v2.0
 
 #Include ./YUnit/Assert.ahk
+#Include ./YUnit/Yunit.ahk
 
 #Include ../Readonly/ReadOnlyArray.ahk
 #Include ../Readonly/ReadOnlyMap.ahk
@@ -28,6 +29,15 @@ class ReadOnlyArrayTests {
         arr := ReadOnlyArray(1, 2, 3, 4, 5)
         Assert.Throws((*) => arr.InsertAt(1, 6), ReadOnlyError)
     }
+
+    From_Always_ReturnsReadOnlyCopy() {
+        arr := [1, 2, 3, 4, 5]
+
+        ro := ReadOnlyArray.From(arr)
+
+        Assert.Throws((*) => ro.Push(6), ReadOnlyError)
+        YUnit.Assert(ObjPtr(arr) != ObjPtr(ro), "Expected read-only copy to be a different array")
+    }
 }
 
 class ReadOnlyMapTests {
@@ -47,5 +57,13 @@ class ReadOnlyMapTests {
     Set_Always_ThrowsReadOnlyError() {
         m := ReadOnlyMap(1, "1", 2, "2", 3, "3")
         Assert.Throws((*) => m.Set(2, "two"), ReadOnlyError)
+    }
+
+    From_Always_ReturnsReadOnlyCopy() {
+        m := Map("a", 1, "b", 2, "c", 3)
+        ro := ReadOnlyMap.From(m)
+
+        Assert.Throws(() => ro["c"] := 4, ReadOnlyError)
+        YUnit.Assert(ObjPtr(m) != ObjPtr(ro), "Expected read-only copy to be a different Map")
     }
 }
