@@ -11,7 +11,7 @@ class QueryTests {
 
     Range_WithStep_ReturnsRange() {
         range := Query.Range(2, 10, 2).ToArray()
-        Assert.ArraysEqual(range, [2, 4, 6, 8, 10, 11])
+        Assert.ArraysEqual(range, [2, 4, 6, 8, 10])
     }
 
     ToMap_CollectsToMap() {
